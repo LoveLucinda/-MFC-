@@ -1968,6 +1968,7 @@ void C博士研究小助手View::OnClrtrans()
 		filter,
 		NULL
 		);
+	OpenFileDlg.m_ofn.lpstrTitle = _T("读取clr色标文件");
 	if (IDOK == OpenFileDlg.DoModal())
 	{
 		pathname = OpenFileDlg.GetFolderPath();
