@@ -137,6 +137,7 @@ public:
 	int Grd2netcdf();
 	//CWinThread* m_CurrentThread;//用一个线程变量记录当前开启的用户线程，如果界面关掉，记得杀掉这个线程
 	int DatCut();
+	afx_msg void OnClrtrans();
 };
 
 #ifndef _DEBUG  // 博士研究小助手View.cpp 中的调试版本

@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(C博士研究小助手View, CView)
 	//自定义消息映射
 	ON_COMMAND(ID_Clr2Cpt, &C博士研究小助手View::OnClr2cpt)
 	ON_COMMAND(ID_DatCut, &C博士研究小助手View::OnDatcut)
+	ON_COMMAND(ID_ClrTrans, &C博士研究小助手View::OnClrtrans)
 END_MESSAGE_MAP()
 
 // C博士研究小助手View 构造/析构
@@ -1945,4 +1946,10 @@ int C博士研究小助手View::DatCut()
 	fout_cutteddat.close();
 	MessageBox(_T("切去成功"));
 	return 0;
+}
+
+
+void C博士研究小助手View::OnClrtrans()
+{
+	// TODO: 在此添加命令处理程序代码
 }

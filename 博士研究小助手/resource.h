@@ -73,6 +73,7 @@
 #define ID_DensyOrRarefy                32774
 #define ID_BUTTON2                      32775
 #define ID_Clr2Cpt                      32775
+#define ID_ClrTrans                     32775
 #define ID_netCDF2dat                   32776
 #define ID_Dat2Grd                      32777
 #define ID_GRD2netCDF                   32778

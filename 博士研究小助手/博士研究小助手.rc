@@ -720,6 +720,7 @@ BEGIN
     ID_CutLargeFile         "将大文件切割为很多小文件"
     ID_ComputeDx            "计算测点与第一个点的距离"
     ID_DensyOrRarefy        "加密数据或抽稀数据"
+    ID_ClrTrans             "将两个数据的色标调成一致"
     ID_netCDF2dat           "将netCDF格式转换为surfer的dat"
     ID_Dat2Grd              "一定是网格化形式的dat"
     ID_GlobalMainMagnetic   "地球主磁场解算"
