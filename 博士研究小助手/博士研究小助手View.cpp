@@ -1952,4 +1952,96 @@ int C博士研究小助手View::DatCut()
 void C博士研究小助手View::OnClrtrans()
 {
 	// TODO: 在此添加命令处理程序代码
+	if (m_Clr2CptDlg.DoModal() != IDOK)
+	{
+		return;
+	}
+	double zmin1 = m_Clr2CptDlg.m_Zmin;
+	double zmax1 = m_Clr2CptDlg.m_Zmax;
+	//1.2 读取crl文件
+	CString filter = _T("Surfer色标文件 clr|*.clr|所有文件|*.*|");
+	CString pathname, clrfile, extename;
+	CFileDialog OpenFileDlg(TRUE,
+		NULL,
+		NULL,
+		OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_READONLY,
+		filter,
+		NULL
+		);
+	if (IDOK == OpenFileDlg.DoModal())
+	{
+		pathname = OpenFileDlg.GetFolderPath();
+		clrfile = OpenFileDlg.GetPathName();
+		extename = OpenFileDlg.GetFileExt();
+	}
+	else
+	{
+		return;
+	}
+	if (m_Clr2CptDlg.DoModal() != IDOK)
+	{
+		return;
+	}
+	double zmin2 = m_Clr2CptDlg.m_Zmin;
+	double zmax2 = m_Clr2CptDlg.m_Zmax;
+	CString clrfile2 = clrfile.Left(clrfile.GetLength() - extename.GetLength()-1) + _T("_new.clr");
+	Clr2Clr(clrfile, clrfile2, zmin1, zmax1,zmin2,zmax2);
+}
+
+
+int C博士研究小助手View::Clr2Clr(CString clrfile1, CString clrfile2, double zmin1, double zmax1,double zmin2,double zmax2)
+{
+	double zLength1 = fabs(zmin1 - zmax1);
+	struct CLRSTRUCT
+	{
+		double percent, value;
+		int R, G, B, A;
+	};
+	//1.1 读取clr文件
+	ifstream if_clr(clrfile1);
+	if (!if_clr)
+	{
+		MessageBox(_T("读取clr文件失败：") + clrfile1);
+		return 0;
+	}
+	CLRSTRUCT clr_temp;
+	vector<CLRSTRUCT> clrVector;
+	char tempchar[20];
+	if_clr.getline(tempchar, 20);
+	while (if_clr >> clr_temp.percent && if_clr >> clr_temp.R && if_clr >> clr_temp.G && if_clr >> clr_temp.B && if_clr >> clr_temp.A)
+	{
+		clr_temp.value = clr_temp.percent / 100.0*zLength1 + zmin1;
+		clrVector.push_back(clr_temp);
+	}if_clr.close();
+	//1.2写入转换后的clr文件
+	double zlength2 = fabs(zmin2 - zmax2);
+	ofstream of_cpt(clrfile2);
+	if (!of_cpt)
+	{
+		MessageBox(_T("写入cpt文件失败：") + clrfile2);
+		return 0;
+	}
+	of_cpt << tempchar<<"\n";
+	of_cpt << 0 << "\t" << clrVector[0].R << "\t" << clrVector[0].G << "\t" << clrVector[0].B << "\t" << clrVector[0].A << "\n";
+	for (int i = 0; i < clrVector.size(); i++)
+	{
+		double value = (clrVector[i].value - zmin2) / zlength2*100.0;
+		if (value<0)
+		{
+			continue;
+		}
+		else if (value<100)
+		{
+			of_cpt << value << "\t" << clrVector[i].R << "\t" << clrVector[i].G << "\t" << clrVector[i].B << "\t" << clrVector[i].A << "\n";
+		}
+		else
+		{
+			break;
+		}
+		
+	}
+	int index_max = clrVector.size() - 1;
+	of_cpt << 100 << "\t" << clrVector[index_max].R << "\t" << clrVector[index_max].G << "\t" << clrVector[index_max].B << "\t" << clrVector[index_max].A << "\n";
+	of_cpt.close();
+	return 0;
 }

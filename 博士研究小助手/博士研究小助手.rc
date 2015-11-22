@@ -426,7 +426,7 @@ BEGIN
     EDITTEXT        IDC_EDIT6,148,13,61,14,ES_AUTOHSCROLL
     LTEXT           "Zmin:",IDC_STATIC,21,16,18,8
     LTEXT           "Zmax:",IDC_STATIC,124,16,21,8
-    PUSHBUTTON      "Read ",IDC_BUTTON1,21,32,50,14
+    PUSHBUTTON      "Read Grid Info",IDC_BUTTON1,21,32,68,14
 END
 
 
@@ -720,13 +720,18 @@ BEGIN
     ID_CutLargeFile         "将大文件切割为很多小文件"
     ID_ComputeDx            "计算测点与第一个点的距离"
     ID_DensyOrRarefy        "加密数据或抽稀数据"
-    ID_ClrTrans             "将两个数据的色标调成一致"
     ID_netCDF2dat           "将netCDF格式转换为surfer的dat"
     ID_Dat2Grd              "一定是网格化形式的dat"
     ID_GlobalMainMagnetic   "地球主磁场解算"
     ID_Surfer_MultiPostMap  "批量生成postMap"
     ID_DatCut               "从dat中截取部分区域"
     ID_GrdCut               "切去nc文件中的一小块"
+END
+
+STRINGTABLE
+BEGIN
+    ID_Clr2Cpt              "将clr转换为cpt"
+    ID_ClrTrans             "将两个数据的色标调成一致"
 END
 
 #endif    // 中文(简体，中国) resources

@@ -1,0 +1,12 @@
+大区域-布格重力异常.nc: Title: 
+大区域-布格重力异常.nc: Command: 
+大区域-布格重力异常.nc: Remark: 
+大区域-布格重力异常.nc: Gridline node registration used [Geographic grid]
+大区域-布格重力异常.nc: Grid file format: nd = GMT netCDF format (64-bit float), COARDS, CF-1.5
+大区域-布格重力异常.nc: x_min: 45 x_max: 70 x_inc: 0.0329380764163 name: Longitude nx: 760
+大区域-布格重力异常.nc: y_min: -45 y_max: -25 y_inc: 0.0328407224959 name: Latitude ny: 610
+大区域-布格重力异常.nc: z_min: 114.300003052 at x = 46.5480895916 y = -25.065681445 z_max: 591 at x = 58.5375494071 y = -27.6929392447
+大区域-布格重力异常.nc: scale_factor: 1 add_offset: 0
+大区域-布格重力异常.nc: median: 489 scale: 42.5506380981
+大区域-布格重力异常.nc: mean: 473.695743956 stdev: 54.879530328 rms: 476.864146476
+大区域-布格重力异常.nc: format: classic
